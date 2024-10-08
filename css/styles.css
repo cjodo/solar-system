@@ -1,0 +1,201 @@
+:root {
+	/* This will be the global perspective & diameter values that I'll change in main.js with the arrow keys */
+	--p: 5; 
+	--d: 10; /* Max Orbit Diameter */
+}
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	color: white;
+	width: 100vw;
+	height: 100vh;
+	background-color: #101010;
+	overflow: hidden;
+}
+
+h1 {
+	margin: 0;
+	width: 100%;
+	text-align: center;
+	position: relative;
+}
+
+header {
+	padding: 1rem;
+	position: absolute;
+	width: 100%;
+	background: #053D5655;
+}
+
+.stars {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+}
+
+.solar-system {
+	all: unset;
+	width: 100%;
+	height: 100%;
+	display: grid;
+}
+
+.solar-system > div {
+	grid-area: 1 / -1;
+	place-self: center;
+	display: flex;
+	align-items: center;
+}
+
+.solar-system > div:not(.sun-orbit){
+	background-color: none;
+	border: #ffffff22 dashed 1px;
+	border-radius: 50%;
+}
+
+.sun {
+	--planet: radial-gradient(circle, #fffacd 20%, #ffeb3b 40%, #ff9800 60%, #f57c00 80%);
+	--w: 2vw;
+	z-index: 0;
+}
+
+.mercury-orbit {
+	--height-radius: calc(var(--p) * 1vw); 
+	--diameter: 10vw;
+}
+.mercury {
+	--planet: radial-gradient(circle, #b1b1b1 10%, #9e9e9e 30%, #888888 50%, #7d7d7d 70%, #4d4d4d 100%);
+	--w: 1cqi;
+	--t: 3.6s;
+	--z: 1;
+}
+
+
+.venus-orbit {
+	--height-radius: calc(var(--p) * 2vw); 
+	--diameter: 20vw;
+}
+.venus {
+	--planet: radial-gradient(circle, #f5e1a4 10%, #f4d798 30%, #dab36a 50%, #c49f5e 70%, #a07840 100%);
+	--w: 1.245vw;
+	--t: 9.3s;
+	--z: 2;
+}
+
+.earth-orbit {
+	--height-radius: calc(var(--p) * 3vw); 
+	--diameter: 30vw;
+}
+.earth {
+	--planet: radial-gradient(circle, #2a94d6 10%, #1c7abf 30%, #0057a3 50%, #004a91 70%, #003974 90%, #0c3f70 100%);
+	--w: 1.66cqi;
+	--t: 15s;
+	--z: 3;
+}
+
+.mars-orbit {
+	--height-radius: calc(var(--p) * 4vw); 
+	--diameter: 40vw;
+}
+.mars {
+	--planet: radial-gradient(circle, #ff6a00 0%, #ff4500 50%, #cc3700 100%); 
+	--t: 28.2s;
+	--z: 4;
+}
+
+.jupiter-orbit {
+	--height-radius: calc(var(--p) * 5vw); 
+	--diameter: 50vw;
+}
+.jupiter {
+	--planet:  radial-gradient(circle, #f0d6b1 0%, #d2b48c 50%, #b8860b 100%);
+	--t: 177.9s;
+	--z: 5;
+}
+
+.saturn-orbit {
+	--height-radius: calc(var(--p) * 6vw); 
+	--diameter: 60vw;
+}
+.saturn {
+	--planet: radial-gradient(circle, #f5f5dc 0%, #d2b48c 50%, #a0522d 100%);
+	--t: 441.9s;
+	--z: 6;
+}
+
+.uranus-orbit {
+	--height-radius: calc(var(--p) * 7vw); 
+	--diameter: 70vw;
+}
+.uranus {
+	--planet: radial-gradient(circle, #66ccff 0%, #3399ff 50%, #0077cc 100%);
+	--z: 7;
+	--t: 1260.15s;
+}
+
+.neptune-orbit {
+	--height-radius: calc(var(--p) * 8vw); 
+	--diameter: 80vw;
+}
+.neptune {
+	--planet: radial-gradient(circle, #4169e1 0%, #0000cd 50%, #00008b 100%);
+	--z: 8;
+	--t: 2471.85s;
+}
+
+/* Orbits */
+.solar-system > div {
+	height: var(--height-radius);
+	width: var(--diameter);
+}
+
+
+.solar-system > div > div {
+	aspect-ratio: 1 / 1;
+	background: var(--planet);
+	border-radius: 50%;
+	content: '';
+	display: block;
+	position: relative;
+	width: var(--w, 2cqi);
+	/* animation: rotate 20s linear infinite; */
+	animation: rotate var(--t, 3s) linear infinite;
+	offset-path: ellipse(calc(var(--diameter) / 2) calc(var(--height-radius) / 2) at calc(var(--diameter) / 2));
+	z-index: var(--z);
+}
+
+@keyframes rotate {
+to{
+	offset-distance: 100%;
+}
+}
+
+.arrow-keys {
+	color: white;
+	position: absolute;
+	bottom: 10px;
+	width: 100%;
+	text-align: center;
+}
+
+.keys {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 5rem;
+}
+
+.keys > div {
+	padding: 0.5rem 1rem;
+	border-radius: 1rem;
+}
+
+.keydown {
+	stroke: #000000;
+	background: #ffffff22;
+}
+
+.arrow-keys svg {
+	stroke: white;
+}
