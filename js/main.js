@@ -7,9 +7,9 @@ window.addEventListener('keydown', (e) => {
 	let rs = getComputedStyle(r)
 
 	let perspective = parseFloat(rs.getPropertyValue('--p'))
-	let diameter = parseInt(rs.getPropertyValue('--d'))
+	let perspectiveLimiter = 6; // TODO re-calculate diameters for larger screens
 
-	if(key == 'ArrowRight' && perspective + 1 <= diameter) {
+	if(key == 'ArrowRight' && perspective + 1 <= perspectiveLimiter) {
 		r.style.setProperty('--p', `${perspective + 0.1}`)
 	}  else if(key == 'ArrowLeft' && perspective > 0) {
 		r.style.setProperty('--p', `${perspective - 0.1}`)
