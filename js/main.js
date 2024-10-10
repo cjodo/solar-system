@@ -61,6 +61,7 @@ planets.forEach((planet, i) => {
 
 	setInterval(() => {
 		position = position * -1
+		console.log(`Swap ${planet.classList[0]} `, {position})
 		planet.style.setProperty('--z', `${position}`)
 
 	}, (animationSeconds * 1000) / 2)
